@@ -1,17 +1,53 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+//INICIO DE PARTIDA: Proyecto Final DISO 24-25
+//Juan Battaglio Quintana, Juan Guasp Timoner
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.println("Hello and welcome!");
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+        Scanner entrada = new Scanner(System.in);
+        int opcion;
 
-        System.out.println("Impresión por pantalla para prueba de commit.");
+        System.out.println();
+        System.out.println("--- BIENVENIDO A POOBR --- ");
+        System.out.println();
+        System.out.println("Elija una opcion de las siguientes: ");
+        System.out.println();
+
+        do {
+            System.out.println("1-Empezar Partida Nueva");
+            System.out.println("2-Guarda la partdia");
+            System.out.println("3-Salir");
+            System.out.print("---> ");
+            opcion = entrada.nextInt();
+
+            switch (opcion) {
+                case 1:
+                    p = new Partida();
+                    System.out.println();
+                    System.out.println("-------COMIENZA LA PARTIDA!!!-------");
+                    System.out.println();
+                    p.simular();
+                    break;
+                case 2:
+
+                    try{
+                        p.guardarPartida();
+                    }catch(Exception ex){
+                        System.out.println("No se ha podido guardar nada en el archivo...");
+                    }
+
+                    break;
+                case 3:
+                    break;
+                default:
+                    throw new IllegalStateException("Valor no válido: " + opcion);
+            }
+
+        }while(opcion != 3);
+
+        System.out.println(".....Saliendo del juego.....");
+        entrada.close();
+        System.exit(0);
     }
 }
