@@ -6,6 +6,11 @@ import settings.TipoJugador;
 
 public class DifficultBotFactory implements PersonajeBotFactory{
 
+    /*
+     * INTERFAZ FACTORY PARA LOS ENEMIGOS
+     * - Gestión según dificultad
+     * - Uso del patrón Factory
+    */
     
     private static int contador = 1;
 

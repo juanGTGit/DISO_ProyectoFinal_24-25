@@ -1,5 +1,11 @@
 package characters;
 
+/** CLASE ABSTRACTA. COMPONENTE DECORADOR
+ * - Se decora un personaje y se le extiende su funcionalidad
+ * - Se implemente el método abstracto de la clase padre
+ * - Implementa el patrón Decorator
+*/
+
 public class PersonajeDecorator extends Personaje{
     protected Personaje decorado;
 
@@ -11,10 +17,5 @@ public class PersonajeDecorator extends Personaje{
     public void recibeDanyo(Integer vida){
         this.setVida(-vida);
     }
-
-    public String toString() {
-		return "NOMBRE: "+ getNombre() + "\nVIDA: "+ getVida() + "\nFUERZA: "+ getFuerza();
-	}
-
 
 }

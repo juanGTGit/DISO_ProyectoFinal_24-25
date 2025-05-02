@@ -1,5 +1,9 @@
 package characters;
 
+/**
+ * Decorador que añade funcionalidad de mago a un personaje.
+*/
+
 public class ArqueroDecorator extends PersonajeDecorator{
 
     private Integer flechas;

@@ -1,5 +1,9 @@
 package characters;
 
+/**
+ * Decorador que añade funcionalidad de mago a un personaje.
+*/
+
 public class MagoDecorator extends PersonajeDecorator{
 
     private Integer mana;

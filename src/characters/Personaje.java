@@ -2,6 +2,11 @@ package characters;
 
 import settings.TipoJugador;
 
+/* CLASE ABSTRACTA
+ * - Definición de atributos y métodos comunes para los personajes
+ * - Representación de un personaje común
+*/
+
 public abstract class Personaje{
 
     private String nombre;
@@ -35,6 +40,10 @@ public abstract class Personaje{
     public TipoJugador getTipoJugador(){
         return this.tipo;
     }
+
+    public String toString() {
+		return "NOMBRE: "+ getNombre() + "\nVIDA: "+ getVida() + "\nFUERZA: "+ getFuerza();
+	}
 
     public abstract void recibeDanyo(Integer valor);
 

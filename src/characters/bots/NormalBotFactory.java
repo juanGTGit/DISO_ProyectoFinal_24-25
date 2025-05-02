@@ -7,6 +7,12 @@ import settings.TipoJugador;
 
 public class NormalBotFactory implements PersonajeBotFactory{
 
+    /*
+     * INTERFAZ FACTORY PARA LOS ENEMIGOS
+     * - Gestión según dificultad
+     * - Uso del patrón Factory
+    */
+    
     private static int contador = 1;
 
     public Personaje crearGuerrero()
