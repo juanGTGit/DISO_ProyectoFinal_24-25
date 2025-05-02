@@ -1,0 +1,41 @@
+package characters;
+
+import settings.TipoJugador;
+
+public abstract class Personaje{
+
+    private String nombre;
+    private Integer vida;
+    private Integer fuerza;
+    private TipoJugador tipo;
+
+    public Personaje(String nombre, Integer vida, Integer fuerza, TipoJugador tipo){
+        this.nombre = nombre;
+        this.vida = vida;
+        this.fuerza = fuerza;
+        this.tipo = tipo;
+    }
+
+    public String getNombre(){
+        return this.nombre;
+    }
+
+    public Integer getVida(){
+        return this.vida;
+    }
+
+    public void setVida(Integer vida){
+        this.vida = vida;
+    }
+
+    public Integer getFuerza(){
+        return this.fuerza;
+    }
+
+    public TipoJugador getTipoJugador(){
+        return this.tipo;
+    }
+
+    public abstract void recibeDanyo(Integer valor);
+
+}
