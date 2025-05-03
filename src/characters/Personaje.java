@@ -43,7 +43,7 @@ public abstract class Personaje{
 
     public String toString() {
 		return "NOMBRE: "+ getNombre() + "\nVIDA: "+ getVida() + "\nFUERZA: "+ getFuerza();
-	}
+    }
 
     public abstract void recibeDanyo(Integer valor);
 
