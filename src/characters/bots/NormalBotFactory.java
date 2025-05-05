@@ -14,7 +14,7 @@ public class NormalBotFactory implements PersonajeBotFactory{
      * sin exponer la lógica de instanciación)
     */
     
-    private static int contador = 1;
+    private static int contador = 0;
 
     public Personaje crearGuerrero()
     {

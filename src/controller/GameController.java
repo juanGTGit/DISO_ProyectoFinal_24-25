@@ -15,6 +15,8 @@ import settings.*;
  * - Gran parte del código y la implementaciones de los patrones ocurren aquí
 */
 
+//TODO HACER COMENTARIOS EN TODOS LOS PROGRAMAS
+
 /** TODO Crear clase en paquete controller con los métodos alternos
  * - Creación de personajes
  * - Algo más (ya veremos)
@@ -117,15 +119,16 @@ public class GameController {
         */
         creacionPersonajesUser(totalJugadores);
         creacionPersonajesBots(totalJugadoresMaquina, nivelDificultad);
+        simulacion();
     }
 
     private void creacionPersonajesUser(int totalJugadores){
 
         System.out.println("\nBienvenido a la seleccion de personajes!!!");
+
         for(int i = 0; i < totalJugadores; i++){
 
-            System.out.print("Nombre del personaje " + (i+1) + ": ");
-            String nombre = entrada.nextLine();
+            entrada.nextLine(); //Limpieza de buffer
 
             System.out.println("Escoge el tipo de personaje:");
             System.out.print("Guerrero/Mago/Arquero\n---> ");
@@ -134,17 +137,17 @@ public class GameController {
             Personaje nuevoPersonaje;
             switch (tipo) {
                 case "guerrero":
-                    nuevoPersonaje = new GuerreroDecorator(new PersonajeBase(nombre, 100, 20, TipoJugador.USER), 30);
+                    nuevoPersonaje = new GuerreroDecorator(new PersonajeBase("J" + (i+1), 100, 20, TipoJugador.USER), 30);
                     break;
                 case "mago":
-                    nuevoPersonaje = new MagoDecorator(new PersonajeBase(nombre, 80, 15, TipoJugador.USER), 100, 3);
+                    nuevoPersonaje = new MagoDecorator(new PersonajeBase("J" + (i+1), 80, 15, TipoJugador.USER), 100, 3);
                     break;
                 case "arquero":
-                    nuevoPersonaje = new ArqueroDecorator(new PersonajeBase(nombre, 90, 25, TipoJugador.USER), 5, 3);
+                    nuevoPersonaje = new ArqueroDecorator(new PersonajeBase("J" + (i+1), 90, 25, TipoJugador.USER), 5, 3);
                     break;
                 default:
                     System.out.println("Tipo de personaje no válido. Se creará un Guerrero por defecto.");
-                    nuevoPersonaje = new GuerreroDecorator(new PersonajeBase(nombre, 100, 20, TipoJugador.USER), 30);
+                    nuevoPersonaje = new GuerreroDecorator(new PersonajeBase("J" + (i+1), 100, 20, TipoJugador.USER), 30);
             }
             
             arrayPersonajes.add(nuevoPersonaje);
@@ -156,7 +159,6 @@ public class GameController {
         Personaje nuevoPersonajeBot = null;
 
         for(int i = 0; i < totalJugadoresMaquina; i++){
-            //TODO Arreglar problema de asignaciond e nombre de la máquina
             if(nivelDificultad == 1 /*NORMAL*/){
                 switch (personajeRandom) {
                     case 1:
@@ -180,6 +182,26 @@ public class GameController {
             }
             arrayPersonajes.add(nuevoPersonajeBot);
         }
+    }
+    
+/*
+    private int randomTurno() {
+		return  (int)(Math.random() * this.arrayPersonajes.size() + 0);
+	}
+*/
+	
+    public void simulacion()
+    {
+        do{
+            
+            /** TODO Método simaulacion
+             * - Desarrollo de estrategias (Strategy Pattern)
+             * - Consultar estados cuando se realice un ataque (State)
+             * - Preguntar a Fidel por Singleton
+             */
+
+        }while(this.arrayPersonajes.size() != 1);
+        System.out.println("Hello, World");
     }
 
     public void guardarPartida(){
