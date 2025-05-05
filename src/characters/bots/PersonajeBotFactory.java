@@ -6,7 +6,8 @@ public interface PersonajeBotFactory {
 
     /*
      * INTERFAZ FACTORY PARA LOS ENEMIGOS
-     * - Uso del patrón Abstract Factory
+     * - Uso del patrón Abstract Factory (Se crean familias de objetos relacionados
+     * sin especificar sus clases concretas)
     */
 
     public Personaje crearGuerrero();

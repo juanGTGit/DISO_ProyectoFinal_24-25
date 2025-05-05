@@ -16,7 +16,7 @@ public class Main {
          * se llama a un método inicial que delega todo el proceso de la partida)
         */
 
-        Partida p = new Partida();
+        GameController p = new GameController();
         p.configurarJuego();
     }
 

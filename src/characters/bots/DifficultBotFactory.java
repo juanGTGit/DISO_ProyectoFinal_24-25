@@ -9,7 +9,8 @@ public class DifficultBotFactory implements PersonajeBotFactory{
     /*
      * INTERFAZ FACTORY PARA LOS ENEMIGOS
      * - Gestión según dificultad
-     * - Uso del patrón Factory
+     * - Uso del patrón Factory (Se crea un objeto según un tipo solicitado,
+     * sin exponer la lógica de instanciación)
     */
     
     private static int contador = 1;

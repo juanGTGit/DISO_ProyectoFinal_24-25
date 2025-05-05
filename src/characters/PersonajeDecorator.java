@@ -3,7 +3,8 @@ package characters;
 /** CLASE ABSTRACTA. COMPONENTE DECORADOR
  * - Se decora un personaje y se le extiende su funcionalidad
  * - Se implemente el método abstracto de la clase padre
- * - Implementa el patrón Decorator
+ * - Implementa el patrón Decorator (Se agregan funcionalidades a objetos
+ * de forma dinámica sin modificar su estructura original)
 */
 
 public class PersonajeDecorator extends Personaje{
