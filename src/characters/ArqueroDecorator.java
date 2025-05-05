@@ -10,7 +10,7 @@ public class ArqueroDecorator extends PersonajeDecorator{
     private Integer vendas;
     private Integer daga;
 
-    public ArqueroDecorator(Personaje decorado, Integer vendas){
+    public ArqueroDecorator(Personaje decorado, Integer flechas, Integer vendas){
         super(decorado);
         this.flechas = 20;
         this.vendas = vendas;

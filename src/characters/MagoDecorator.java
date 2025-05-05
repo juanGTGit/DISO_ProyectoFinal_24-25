@@ -11,7 +11,7 @@ public class MagoDecorator extends PersonajeDecorator{
 
     public MagoDecorator(Personaje decorado, Integer mana, Integer pociones){
         super(decorado);
-        this.mana = 100;
+        this.mana = mana;
         this.pociones = pociones;
     }
 
