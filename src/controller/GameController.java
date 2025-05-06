@@ -201,12 +201,15 @@ public class GameController {
             /**
              * Tipo de jugador(user, bot)
              * --> Tipo de personaje (instanceof)
-            */
+            */ 
+
+            do{
+                jTurnoAtacado = randomTurno();
+            }while(jTurnoAtacado == jTurnoAtacante);
+
             if(this.arrayPersonajes.get(jTurnoAtacante).getTipoJugador() == TipoJugador.USER){
 
-                do{
-                    jTurnoAtacado = randomTurno();
-                }while(jTurnoAtacado == jTurnoAtacante);
+
 
                 if(this.arrayPersonajes.get(jTurnoAtacante) instanceof GuerreroDecorator){
                     guerreroAtaqueStrategy.atacar(this.arrayPersonajes.get(jTurnoAtacante), this.arrayPersonajes.get(jTurnoAtacado));
