@@ -7,6 +7,7 @@ Proyecto Final de la asigantura de Diseño de Software de Ingeniería de Softwar
   · Factory
   · Abstract Factory
   · Decorator
+  · Strategy
 
 - Memoria con manual de instrucciones, descripción del juego y diagrama UML disponibles pronto.
 
