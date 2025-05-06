@@ -11,12 +11,12 @@ public class GuerreroUserAtaqueStrategy implements AtaqueStrategy{
 
     @Override
     public void atacar(Personaje atacante, Personaje atacado){
-        System.out.println("Que deberia hacer el guerrero?");
-        System.out.println("1- Atacar\n---> ");
 
         Integer accion;
 
         do{
+            System.out.println("Que deberia hacer el guerrero?");
+            System.out.println("1- Atacar\n---> ");
             accion = entrada.nextInt();
             
             switch (accion) {

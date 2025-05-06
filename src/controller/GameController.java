@@ -6,10 +6,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import attack.*;
-import attack.users.ArqueroUserAtaqueStrategy;
-import attack.users.GuerreroUserAtaqueStrategy;
-import attack.users.MagoUserAtaqueStrategy;
+import attack.users.*;
+import attack.bots.*;
 import characters.*;
 import characters.bots.DifficultBotFactory;
 import characters.bots.NormalBotFactory;
@@ -107,11 +105,8 @@ public class GameController {
     public void iniciarJuego(int totalJugadores, int totalJugadoresMaquina, int nivelDificultad){
         /**
          * TODO Comenzar la base de la clase partida (método simular)
-         * Crear personajes usuarios (HECHO)
-         * Crear personajes enemigos (HECHO)
-         * Simuacaion de partida (Ataques enemigos con Strategy)
+         * Simuacaion de partida (Ataques amigos (HECHO) y enemigos con Strategy)
          * Consulta de la salud (State en caso de que quede poca vida o nula)
-         * Creación de personajes en funcion de dificultad
         */
         creacionPersonajesUser(totalJugadores);
         creacionPersonajesBots(totalJugadoresMaquina, nivelDificultad);
@@ -190,15 +185,14 @@ public class GameController {
     {
         System.out.println("\n-------\n");
         Integer jTurnoAtacante = randomTurno();
-        Integer jTurnoAtacado, accion;
+        Integer jTurnoAtacado;
 
         //Estrategias
         GuerreroUserAtaqueStrategy guerreroAtaqueStrategy = new GuerreroUserAtaqueStrategy();
         MagoUserAtaqueStrategy magoAtaqueStrategy = new MagoUserAtaqueStrategy();
         ArqueroUserAtaqueStrategy arqueroAtaqueStrategy = new ArqueroUserAtaqueStrategy();
 
-        do{
-            
+        do{ 
             /** TODO Método simulacion
              * - Desarrollo de estrategias (Strategy Pattern)
             */
@@ -214,17 +208,22 @@ public class GameController {
                     jTurnoAtacado = randomTurno();
                 }while(jTurnoAtacado == jTurnoAtacante);
 
-                if(this.arrayPersonajes.get(jTurnoAtacado) instanceof GuerreroDecorator){
+                if(this.arrayPersonajes.get(jTurnoAtacante) instanceof GuerreroDecorator){
                     guerreroAtaqueStrategy.atacar(this.arrayPersonajes.get(jTurnoAtacante), this.arrayPersonajes.get(jTurnoAtacado));
-                }else if(this.arrayPersonajes.get(jTurnoAtacado) instanceof MagoDecorator){
+                }else if(this.arrayPersonajes.get(jTurnoAtacante) instanceof MagoDecorator){
                     magoAtaqueStrategy.atacar(this.arrayPersonajes.get(jTurnoAtacante), this.arrayPersonajes.get(jTurnoAtacado));
-                }else if(this.arrayPersonajes.get(jTurnoAtacado) instanceof ArqueroDecorator){
+                }else if(this.arrayPersonajes.get(jTurnoAtacante) instanceof ArqueroDecorator){
                     arqueroAtaqueStrategy.atacar(this.arrayPersonajes.get(jTurnoAtacante), this.arrayPersonajes.get(jTurnoAtacado));
                 }
 
             }/*else if(this.arrayPersonajes.get(jTurnoAtacante).getTipoJugador() == TipoJugador.BOT){
                 
             }*/
+
+            /** TODO Consultar estado de los personajes
+             * Implementar el State Pattern en función de la vida del personaje
+             * Si está a 0, cambiar el estado y eliminar al personaje del ArrayList
+            */
 
             //Pausa entre turnos
             try {
