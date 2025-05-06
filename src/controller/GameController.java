@@ -6,14 +6,14 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import attack.*;
+import attack.users.ArqueroUserAtaqueStrategy;
+import attack.users.GuerreroUserAtaqueStrategy;
+import attack.users.MagoUserAtaqueStrategy;
 import characters.*;
 import characters.bots.DifficultBotFactory;
 import characters.bots.NormalBotFactory;
 import settings.*;
-/* CLASE GAME CONTROLLER
- * - Encargada de realizar todo el programa
- * - Gran parte del código y la implementaciones de los patrones ocurren aquí
-*/
 
 //TODO HACER COMENTARIOS EN TODOS LOS PROGRAMAS
 
@@ -42,10 +42,6 @@ public class GameController {
         do{
             System.out.println("1. Empezar Partida Nueva");
             System.out.println("2. Guarda la Partida");
-            /** TODO Cambiar la condición de guardado de partida
-             * Si no se ha jugado ninguna partida que no se pueda guardar nada
-             * y haga un print de un aviso (no excepcion)
-             */
             System.out.println("3. Salir");
             System.out.print("---> ");
             opcion = entrada.nextInt();
@@ -112,7 +108,7 @@ public class GameController {
         /**
          * TODO Comenzar la base de la clase partida (método simular)
          * Crear personajes usuarios (HECHO)
-         * Crear personajes enemigos
+         * Crear personajes enemigos (HECHO)
          * Simuacaion de partida (Ataques enemigos con Strategy)
          * Consulta de la salud (State en caso de que quede poca vida o nula)
          * Creación de personajes en funcion de dificultad
@@ -184,25 +180,66 @@ public class GameController {
         }
     }
     
-/*
+
     private int randomTurno() {
 		return  (int)(Math.random() * this.arrayPersonajes.size() + 0);
 	}
-*/
+
 	
     public void simulacion()
     {
+        System.out.println("\n-------\n");
+        Integer jTurnoAtacante = randomTurno();
+        Integer jTurnoAtacado, accion;
+
+        //Estrategias
+        GuerreroUserAtaqueStrategy guerreroAtaqueStrategy = new GuerreroUserAtaqueStrategy();
+        MagoUserAtaqueStrategy magoAtaqueStrategy = new MagoUserAtaqueStrategy();
+        ArqueroUserAtaqueStrategy arqueroAtaqueStrategy = new ArqueroUserAtaqueStrategy();
+
         do{
             
-            /** TODO Método simaulacion
+            /** TODO Método simulacion
              * - Desarrollo de estrategias (Strategy Pattern)
-             * - Consultar estados cuando se realice un ataque (State)
-             * - Preguntar a Fidel por Singleton
-             */
+            */
+            System.out.println(this.arrayPersonajes.get(jTurnoAtacante));
+            
+            /**
+             * Tipo de jugador(user, bot)
+             * --> Tipo de personaje (instanceof)
+            */
+            if(this.arrayPersonajes.get(jTurnoAtacante).getTipoJugador() == TipoJugador.USER){
+
+                do{
+                    jTurnoAtacado = randomTurno();
+                }while(jTurnoAtacado == jTurnoAtacante);
+
+                if(this.arrayPersonajes.get(jTurnoAtacado) instanceof GuerreroDecorator){
+                    guerreroAtaqueStrategy.atacar(this.arrayPersonajes.get(jTurnoAtacante), this.arrayPersonajes.get(jTurnoAtacado));
+                }else if(this.arrayPersonajes.get(jTurnoAtacado) instanceof MagoDecorator){
+                    magoAtaqueStrategy.atacar(this.arrayPersonajes.get(jTurnoAtacante), this.arrayPersonajes.get(jTurnoAtacado));
+                }else if(this.arrayPersonajes.get(jTurnoAtacado) instanceof ArqueroDecorator){
+                    arqueroAtaqueStrategy.atacar(this.arrayPersonajes.get(jTurnoAtacante), this.arrayPersonajes.get(jTurnoAtacado));
+                }
+
+            }/*else if(this.arrayPersonajes.get(jTurnoAtacante).getTipoJugador() == TipoJugador.BOT){
+                
+            }*/
+
+            //Pausa entre turnos
+            try {
+                Thread.sleep(2000); 
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 
         }while(this.arrayPersonajes.size() != 1);
-        System.out.println("Hello, World");
     }
+
+    /** TODO Cambiar la condición de guardado de partida
+     * Si no se ha jugado ninguna partida que no se pueda guardar nada
+     * y haga un print de un aviso (no excepcion)
+    */
 
     public void guardarPartida(){
         FileOutputStream  fichero = null;
