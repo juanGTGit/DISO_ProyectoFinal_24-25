@@ -15,11 +15,6 @@ import settings.*;
 
 //TODO HACER COMENTARIOS EN STATE Y VIDA
 
-/** TODO Crear clase en paquete controller con los métodos alternos
- * - Creación de personajes
- * - Algo más (ya veremos)
- */
-
 public class GameController {
 
     //Guardado de personajes, atributos y fábricas
@@ -108,7 +103,9 @@ public class GameController {
 
         //Llamadas a métodos de la partida
         creacionPersonajesUser(totalJugadores);
-        creacionPersonajesBots(totalJugadoresMaquina, nivelDificultad);
+        if(totalJugadoresMaquina > 0){
+            creacionPersonajesBots(totalJugadoresMaquina, nivelDificultad);
+        }
         //Ataques y acciones
         simulacion();
         //Vuelta al metodo de menu
@@ -217,7 +214,7 @@ public class GameController {
              * - En función del turno elegido al azar, le toca a un jugador o a otro
              * - Se escoge la estrategia correspondiente en caso de user o bot
              * - Después, se cruza con el tipo de personaje
-             */
+            */
 
             do{
                 jTurnoAtacado = randomTurno();
@@ -248,6 +245,7 @@ public class GameController {
             /** TODO Consultar estado de los personajes
              * Implementar el State Pattern en función de la vida del personaje
              * Si está a 0, cambiar el estado y eliminar al personaje del ArrayList
+             * Implementar Singleton
             */
 
             //Pausa entre turnos
