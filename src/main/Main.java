@@ -11,7 +11,7 @@ import controller.*;
 public class Main {
     public static void main(String[] args) {
 
-        /*MENU DEL JUEGO
+        /*MAIN DEL JUEGO
          * -Uso de patrón Facade (Se ininicializa el objeto y
          * se llama a un método inicial que delega todo el proceso de la partida)
         */

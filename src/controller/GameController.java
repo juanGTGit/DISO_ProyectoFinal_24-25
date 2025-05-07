@@ -13,7 +13,7 @@ import characters.bots.DifficultBotFactory;
 import characters.bots.NormalBotFactory;
 import settings.*;
 
-//TODO HACER COMENTARIOS EN TODOS LOS PROGRAMAS
+//TODO HACER COMENTARIOS EN STATE Y VIDA
 
 /** TODO Crear clase en paquete controller con los métodos alternos
  * - Creación de personajes
@@ -22,21 +22,23 @@ import settings.*;
 
 public class GameController {
 
+    //Guardado de personajes, atributos y fábricas
     private ArrayList<Personaje> arrayPersonajes = new ArrayList<Personaje>();
     Scanner entrada = new Scanner(System.in);
 
     DifficultBotFactory difficultBotFactory = new DifficultBotFactory();
     NormalBotFactory normalBotFactory = new NormalBotFactory();
     
+    //Metodo inicial llamado en el main
     public void configurarJuego(){
 
-        
         int totalJugadores = 0, totalJugadoresMaquina = 0, nivelDificultad = 0;
 
         int opcion = 0;
         System.out.println("\n---BIENVENIDO AL JUEGO---\n");
         System.out.println("Elija una opcion de las siguientes:\n");
 
+        //Menu de seleccion de partida
         do{
             System.out.println("1. Empezar Partida Nueva");
             System.out.println("2. Guarda la Partida");
@@ -103,16 +105,18 @@ public class GameController {
 
     //Comienzo del juego
     public void iniciarJuego(int totalJugadores, int totalJugadoresMaquina, int nivelDificultad){
-        /**
-         * TODO Comenzar la base de la clase partida (método simular)
-         * Simuacaion de partida (Ataques amigos (HECHO) y enemigos con Strategy)
-         * Consulta de la salud (State en caso de que quede poca vida o nula)
-        */
+
+        //Llamadas a métodos de la partida
         creacionPersonajesUser(totalJugadores);
         creacionPersonajesBots(totalJugadoresMaquina, nivelDificultad);
+        //Ataques y acciones
         simulacion();
+        //Vuelta al metodo de menu
+        configurarJuego();
+
     }
 
+    //Creacion de usuarios
     private void creacionPersonajesUser(int totalJugadores){
 
         System.out.println("\nBienvenido a la seleccion de personajes!!!");
@@ -126,6 +130,8 @@ public class GameController {
             String tipo = entrada.nextLine().toLowerCase();
 
             Personaje nuevoPersonaje;
+
+            //Decoradores en funcion de la clase
             switch (tipo) {
                 case "guerrero":
                     nuevoPersonaje = new GuerreroDecorator(new PersonajeBase("J" + (i+1), 100, 20, TipoJugador.USER), 30);
@@ -141,17 +147,23 @@ public class GameController {
                     nuevoPersonaje = new GuerreroDecorator(new PersonajeBase("J" + (i+1), 100, 20, TipoJugador.USER), 30);
             }
             
+            //Añadido al array de personajes
             arrayPersonajes.add(nuevoPersonaje);
         }
     }
 
+    //Creacion de bots
     private void creacionPersonajesBots(int totalJugadoresMaquina, int nivelDificultad){
-        Integer personajeRandom = (int)(Math.random() * 3 + 1);
         Personaje nuevoPersonajeBot = null;
 
         for(int i = 0; i < totalJugadoresMaquina; i++){
+
+            Integer personajeRandom = (int)(Math.random() * 3 + 1);
+
+            //Decoradores en funcion de dificultad
             if(nivelDificultad == 1 /*NORMAL*/){
                 switch (personajeRandom) {
+                    //Los métodos de la factory ya implementan un personaje base para ser decorado en funicon de la clase
                     case 1:
                         nuevoPersonajeBot = new GuerreroDecorator(normalBotFactory.crearGuerrero(), 30);
                     case 2:
@@ -171,37 +183,41 @@ public class GameController {
                 }
 
             }
+            //Añadido al array
             arrayPersonajes.add(nuevoPersonajeBot);
         }
     }
     
-
+    //Método para decidir el turno
     private int randomTurno() {
 		return  (int)(Math.random() * this.arrayPersonajes.size() + 0);
 	}
 
-	
+	//Simulación. Método principal de la partida
     public void simulacion()
     {
         System.out.println("\n-------\n");
         Integer jTurnoAtacante = randomTurno();
         Integer jTurnoAtacado;
 
-        //Estrategias
-        GuerreroUserAtaqueStrategy guerreroAtaqueStrategy = new GuerreroUserAtaqueStrategy();
-        MagoUserAtaqueStrategy magoAtaqueStrategy = new MagoUserAtaqueStrategy();
-        ArqueroUserAtaqueStrategy arqueroAtaqueStrategy = new ArqueroUserAtaqueStrategy();
+        //Estrategias user
+        GuerreroUserAtaqueStrategy guerreroUserAtaqueStrategy = new GuerreroUserAtaqueStrategy();
+        MagoUserAtaqueStrategy magoUserAtaqueStrategy = new MagoUserAtaqueStrategy();
+        ArqueroUserAtaqueStrategy arqueroUserAtaqueStrategy = new ArqueroUserAtaqueStrategy();
 
-        do{ 
-            /** TODO Método simulacion
-             * - Desarrollo de estrategias (Strategy Pattern)
-            */
+        //Estrategias bots
+        ArqueroBotAtaqueStrategy arqueroBotAtaqueStrategy = new ArqueroBotAtaqueStrategy();
+        MagoBotAtaqueStrategy magoBotAtaqueStrategy = new MagoBotAtaqueStrategy();
+        GuerreroBotAtaqueStrategy guerreroBotAtaqueStrategy = new GuerreroBotAtaqueStrategy();
+
+        do{
             System.out.println(this.arrayPersonajes.get(jTurnoAtacante));
             
-            /**
-             * Tipo de jugador(user, bot)
-             * --> Tipo de personaje (instanceof)
-            */ 
+            /** SELECCION DEL TURNO
+             * - En función del turno elegido al azar, le toca a un jugador o a otro
+             * - Se escoge la estrategia correspondiente en caso de user o bot
+             * - Después, se cruza con el tipo de personaje
+             */
 
             do{
                 jTurnoAtacado = randomTurno();
@@ -209,19 +225,25 @@ public class GameController {
 
             if(this.arrayPersonajes.get(jTurnoAtacante).getTipoJugador() == TipoJugador.USER){
 
-
-
                 if(this.arrayPersonajes.get(jTurnoAtacante) instanceof GuerreroDecorator){
-                    guerreroAtaqueStrategy.atacar(this.arrayPersonajes.get(jTurnoAtacante), this.arrayPersonajes.get(jTurnoAtacado));
+                    guerreroUserAtaqueStrategy.atacar(this.arrayPersonajes.get(jTurnoAtacante), this.arrayPersonajes.get(jTurnoAtacado));
                 }else if(this.arrayPersonajes.get(jTurnoAtacante) instanceof MagoDecorator){
-                    magoAtaqueStrategy.atacar(this.arrayPersonajes.get(jTurnoAtacante), this.arrayPersonajes.get(jTurnoAtacado));
+                    magoUserAtaqueStrategy.atacar(this.arrayPersonajes.get(jTurnoAtacante), this.arrayPersonajes.get(jTurnoAtacado));
                 }else if(this.arrayPersonajes.get(jTurnoAtacante) instanceof ArqueroDecorator){
-                    arqueroAtaqueStrategy.atacar(this.arrayPersonajes.get(jTurnoAtacante), this.arrayPersonajes.get(jTurnoAtacado));
+                    arqueroUserAtaqueStrategy.atacar(this.arrayPersonajes.get(jTurnoAtacante), this.arrayPersonajes.get(jTurnoAtacado));
                 }
 
-            }/*else if(this.arrayPersonajes.get(jTurnoAtacante).getTipoJugador() == TipoJugador.BOT){
+            }else if(this.arrayPersonajes.get(jTurnoAtacante).getTipoJugador() == TipoJugador.BOT){
+
+                if(this.arrayPersonajes.get(jTurnoAtacante) instanceof GuerreroDecorator){
+                    guerreroBotAtaqueStrategy.atacar(this.arrayPersonajes.get(jTurnoAtacante), this.arrayPersonajes.get(jTurnoAtacado));
+                }else if(this.arrayPersonajes.get(jTurnoAtacante) instanceof MagoDecorator){
+                    magoBotAtaqueStrategy.atacar(this.arrayPersonajes.get(jTurnoAtacante), this.arrayPersonajes.get(jTurnoAtacado));
+                }else if(this.arrayPersonajes.get(jTurnoAtacante) instanceof ArqueroDecorator){
+                    arqueroBotAtaqueStrategy.atacar(this.arrayPersonajes.get(jTurnoAtacante), this.arrayPersonajes.get(jTurnoAtacado));
+                }
                 
-            }*/
+            }
 
             /** TODO Consultar estado de los personajes
              * Implementar el State Pattern en función de la vida del personaje
@@ -236,6 +258,12 @@ public class GameController {
             }
 
         }while(this.arrayPersonajes.size() != 1);
+
+        if(this.arrayPersonajes.size() == 1){
+            System.out.println("\n---------\n");
+            System.out.println("El ganador es: " + this.arrayPersonajes.get(0).getNombre());
+            System.out.println("\n---------\n" + this.arrayPersonajes.get(0));
+        }
     }
 
     /** TODO Cambiar la condición de guardado de partida
@@ -243,6 +271,7 @@ public class GameController {
      * y haga un print de un aviso (no excepcion)
     */
 
+    //Método de guardado
     public void guardarPartida(){
         FileOutputStream  fichero = null;
 	    PrintWriter escritura = null;

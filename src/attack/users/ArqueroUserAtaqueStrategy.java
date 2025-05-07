@@ -10,6 +10,7 @@ public class ArqueroUserAtaqueStrategy implements AtaqueStrategy{
 
     Scanner entrada = new Scanner(System.in);
 
+    //Método de ataque
     @Override
     public void atacar(Personaje atacante, Personaje atacado){
 
@@ -20,6 +21,7 @@ public class ArqueroUserAtaqueStrategy implements AtaqueStrategy{
             System.out.println("1- Atacar\n2- Consumible\n--> " );
             accion = entrada.nextInt();
 
+            //Acciones del personaje en funcion de la opcion que se escoge y su tipo de ataque
             switch(accion){
                 case 1:
                     do{

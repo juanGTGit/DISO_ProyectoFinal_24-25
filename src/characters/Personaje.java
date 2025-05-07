@@ -30,7 +30,7 @@ public abstract class Personaje{
     }
 
     public void setVida(Integer vida){
-        this.vida = vida;
+        this.vida = this.vida + vida;
     }
 
     public Integer getFuerza(){

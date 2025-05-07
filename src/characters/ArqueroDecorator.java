@@ -40,8 +40,8 @@ public class ArqueroDecorator extends PersonajeDecorator{
     public void curarVenda() {
 		if (this.vendas > 0) {
 			this.vendas = this.vendas -1;
-			setVida(40);
-			System.out.println("Recuperas 40 de vida");
+			setVida(30);
+			System.out.println("Recuperas 30 de vida");
 		}else {
 			System.out.println("No quedan vendas");
 		}

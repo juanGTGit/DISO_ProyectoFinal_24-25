@@ -30,7 +30,8 @@ public class MagoDecorator extends PersonajeDecorator{
     public void tomarPocion(){
         if(this.pociones > 0){
             this.pociones = this.pociones - 1;
-            setMana(100);
+            setMana(40);
+            System.out.println("Recuperas 40 de mana");
         }else{
             System.out.println("No tienes pociones");
         }

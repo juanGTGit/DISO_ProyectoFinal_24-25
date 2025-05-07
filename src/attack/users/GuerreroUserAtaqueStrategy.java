@@ -9,6 +9,7 @@ public class GuerreroUserAtaqueStrategy implements AtaqueStrategy{
 
     Scanner entrada = new Scanner(System.in);
 
+    //Método de atauqe
     @Override
     public void atacar(Personaje atacante, Personaje atacado){
 
@@ -19,6 +20,7 @@ public class GuerreroUserAtaqueStrategy implements AtaqueStrategy{
             System.out.println("1- Atacar\n---> ");
             accion = entrada.nextInt();
             
+            //Realización del ataque
             switch (accion) {
                 case 1:
                     System.out.println("El jugador " + atacante.getNombre() + " ataca a " + atacado.getNombre());
