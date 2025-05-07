@@ -244,8 +244,11 @@ public class GameController {
 
             /** TODO Consultar estado de los personajes
              * Implementar el State Pattern en función de la vida del personaje
+             * (NOTIFICACIONES)
+             * Si está al 50%, poner que está a mitad de vida
+             * Si está al 20%, poner que está a poca vida
              * Si está a 0, cambiar el estado y eliminar al personaje del ArrayList
-             * Implementar Singleton
+             * Implementar Observer para poder implementar el State
             */
 
             //Pausa entre turnos
