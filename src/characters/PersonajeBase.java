@@ -15,6 +15,9 @@ public class PersonajeBase extends Personaje{
     @Override
     public void recibeDanyo(Integer vida){
         this.setVida(-vida);
+        if (vida < 0) {
+            vida = 0; // Ensure life does not go below 0
+        }
     }
 
 }

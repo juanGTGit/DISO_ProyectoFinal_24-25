@@ -55,6 +55,9 @@ public class ArqueroDecorator extends PersonajeDecorator{
 	@Override
 	public void recibeDanyo(Integer valor) {
 		this.setVida(-valor);
+		if (valor < 0) {
+			valor = 0; // Ensure life does not go below 0
+		}
 	}
 	
 }

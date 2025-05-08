@@ -30,6 +30,9 @@ public class GuerreroDecorator extends PersonajeDecorator{
 
         if(this.armadura>=valor) {
 			setArmadura(-valor);
+			if (valor < 0) {
+				valor = 0; // Ensure life does not go below 0
+			}
 		}else if(this.armadura == 0) {
 			if(this.getVida()<=valor) {
 				this.setVida(0);

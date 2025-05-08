@@ -124,7 +124,7 @@ public class GameController {
 
             System.out.println("Escoge el tipo de personaje:");
             System.out.print("Guerrero/Mago/Arquero\n---> ");
-            String tipo = entrada.nextLine().trim().toLowerCase();
+            String tipo = entrada.nextLine().toLowerCase();
 
             Personaje nuevoPersonaje;
 
@@ -271,9 +271,22 @@ public class GameController {
                 e.printStackTrace();
             }
 
+            if(this.arrayPersonajes.get(jTurnoAtacado).getVida() <= 0){
+                System.out.println(this.arrayPersonajes.get(jTurnoAtacado).getNombre() + " esta muerto\n");
+                this.arrayPersonajes.remove((int)jTurnoAtacado);
 
+                //Adjuste del indice del atacante
+                if (jTurnoAtacado < jTurnoAtacante) {
+                    jTurnoAtacante--;
+                }
+            }else if(this.arrayPersonajes.get(jTurnoAtacante).getVida() <= 0){
+                System.out.println(this.arrayPersonajes.get(jTurnoAtacante).getNombre() + " esta muerto\n");
+                this.arrayPersonajes.remove((int)jTurnoAtacado);
+            }
 
         }while(this.arrayPersonajes.size() != 1);
+
+
 
         if(this.arrayPersonajes.size() == 1){
             System.out.println("\n---------\n");
