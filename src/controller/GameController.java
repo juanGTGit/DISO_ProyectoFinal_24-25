@@ -9,8 +9,6 @@ import java.util.Scanner;
 import attack.users.*;
 import attack.bots.*;
 import characters.*;
-import state.*;
-import observer.*;
 import characters.bots.DifficultBotFactory;
 import characters.bots.NormalBotFactory;
 import settings.*;
