@@ -28,22 +28,15 @@ public class GuerreroDecorator extends PersonajeDecorator{
     @Override
     public void recibeDanyo(Integer valor){
 
-        if(this.armadura>=valor) {
-			setArmadura(-valor);
-			if (valor < 0) {
-				valor = 0; // Ensure life does not go below 0
-			}
-		}else if(this.armadura == 0) {
-			if(this.getVida()<=valor) {
-				this.setVida(0);
-			}else {
-				this.setVida(-valor);
-			}
-			
-		}else {
-			Integer aux = valor-this.armadura;
-			this.armadura = 0;
+		Integer aux = valor - this.armadura;
+
+		this.setArmadura(valor);
+		if(valor <= 0){
+			valor = 0;
 			this.setVida(-aux);
+			if(this.getVida() < 0){
+				aux = 0;
+			}
 		}
 
     }

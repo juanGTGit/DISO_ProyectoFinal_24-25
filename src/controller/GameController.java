@@ -227,9 +227,6 @@ public class GameController {
                 jTurnoAtacado = randomTurno();
             }while(jTurnoAtacado == jTurnoAtacante);
 
-
-            //TODO EL PROBLEMA DE LA VIDA ES EN EL GUERRERO
-
             if(this.arrayPersonajes.get(jTurnoAtacante).getTipoJugador() == TipoJugador.USER){
 
                 if(this.arrayPersonajes.get(jTurnoAtacante) instanceof GuerreroDecorator){
@@ -252,14 +249,28 @@ public class GameController {
                 
             }
 
-            /** TODO Consultar estado de los personajes
-             * Si está al 50%, poner que está a mitad de vida
-             * Si está al 20%, poner que está a poca vida
+            /** Estado de los personajes
+             * Si está al 50%, está a mitad de vida
+             * Si está al 20%, está a poca vida
              * Si está a 0, cambiar el estado y eliminar al personaje del ArrayList
             */
 
-            //TODO Consulta de la vida
+            //Consulta de la vida
+            Double porcentajeAtacante = (double) this.arrayPersonajes.get(jTurnoAtacante).getVida() / 100;
+            Double porcentajeAtacado = (double) this.arrayPersonajes.get(jTurnoAtacado).getVida() / 100;
 
+            
+            if(porcentajeAtacante <= 0.2){
+                System.out.println("El personaje " + this.arrayPersonajes.get(jTurnoAtacante).getNombre() + " esta a poca vida");
+            }else if(porcentajeAtacante <= 0.5){
+                System.out.println("Al personaje " + this.arrayPersonajes.get(jTurnoAtacante).getNombre() + " le queda la mitad de la vida");
+            }
+
+            if(porcentajeAtacado <= 0.2){
+                System.out.println("El personaje " + this.arrayPersonajes.get(jTurnoAtacado).getNombre() + " esta a poca vida");
+            }else if(porcentajeAtacado <= 0.5){
+                System.out.println("Al personaje " + this.arrayPersonajes.get(jTurnoAtacado).getNombre() + " le queda la mitad de la vida");
+            }
 
             //Pausa entre turnos
             try {
