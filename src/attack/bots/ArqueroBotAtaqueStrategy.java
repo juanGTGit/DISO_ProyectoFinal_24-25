@@ -29,7 +29,7 @@ public class ArqueroBotAtaqueStrategy implements AtaqueStrategy{
             case 1:
                 System.out.println("Como deberia atacar el arquero?");
                 System.out.println("1- Arco\n2- Daga\n\n...");
-
+                
                 try {
                     Thread.sleep(1000); 
                 } catch (InterruptedException e) {
