@@ -6,6 +6,7 @@ import settings.TipoJugador;
  * - Representación de un personaje común
 */
 
+
 public abstract class Personaje{
 
     private String nombre;
@@ -30,6 +31,7 @@ public abstract class Personaje{
 
     public void setVida(Integer vida){
         this.vida = this.vida + vida;
+        if (this.vida < 0) this.vida = 0;
     }
 
     public Integer getFuerza(){

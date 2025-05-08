@@ -4,6 +4,7 @@ import characters.Personaje;
 import characters.PersonajeBase;
 import settings.TipoJugador;
 
+
 public class DifficultBotFactory implements PersonajeBotFactory{
 
     /*
