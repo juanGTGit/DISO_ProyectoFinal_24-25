@@ -31,10 +31,12 @@ public class MagoUserAtaqueStrategy implements AtaqueStrategy{
                     if(atacante instanceof MagoDecorator){
                         ((MagoDecorator) atacante).gastarMana();
                     }
+                    break;
                 case 2:
                     if(atacante instanceof MagoDecorator){
                         ((MagoDecorator) atacante).tomarPocion();
                     }
+                    break;
                 default:
                     System.out.println("Opcion no valida");
             }

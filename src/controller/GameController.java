@@ -13,8 +13,6 @@ import characters.bots.DifficultBotFactory;
 import characters.bots.NormalBotFactory;
 import settings.*;
 
-//TODO HACER COMENTARIOS EN STATE Y VIDA
-
 public class GameController {
 
     //Guardado de personajes, atributos y fábricas
@@ -229,6 +227,9 @@ public class GameController {
                 jTurnoAtacado = randomTurno();
             }while(jTurnoAtacado == jTurnoAtacante);
 
+
+            //TODO EL PROBLEMA DE LA VIDA ES EN EL GUERRERO
+
             if(this.arrayPersonajes.get(jTurnoAtacante).getTipoJugador() == TipoJugador.USER){
 
                 if(this.arrayPersonajes.get(jTurnoAtacante) instanceof GuerreroDecorator){
@@ -252,14 +253,12 @@ public class GameController {
             }
 
             /** TODO Consultar estado de los personajes
-             * Implementar el State Pattern en función de la vida del personaje
-             * (NOTIFICACIONES)
              * Si está al 50%, poner que está a mitad de vida
              * Si está al 20%, poner que está a poca vida
              * Si está a 0, cambiar el estado y eliminar al personaje del ArrayList
-             * Implementar Observer para poder implementar el State
             */
 
+            //TODO Consulta de la vida
 
 
             //Pausa entre turnos
@@ -306,7 +305,7 @@ public class GameController {
 			fichero = new FileOutputStream("Guardado.txt", true);
 			escritura = new PrintWriter (fichero,true);
 			
-			LocalDate fecha = LocalDate.now(); // Create a date object
+			LocalDate fecha = LocalDate.now();
 			
 			escritura.write("Fecha: "+ fecha +"\n");
 			escritura.write("GANADOR:\n");

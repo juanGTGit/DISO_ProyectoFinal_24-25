@@ -26,6 +26,7 @@ public class GuerreroUserAtaqueStrategy implements AtaqueStrategy{
                     System.out.println("El jugador " + atacante.getNombre() + " ataca a " + atacado.getNombre());
 
                     atacado.recibeDanyo(atacante.getFuerza());
+                    break;
             }
             
         }while(accion != 1);
