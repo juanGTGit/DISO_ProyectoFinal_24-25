@@ -34,6 +34,6 @@ public class GuerreroUserAtaqueStrategy implements AtaqueStrategy{
             
         }while(accion != 1);
         
-        entrada.close();
+        
     }
 }

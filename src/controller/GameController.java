@@ -9,6 +9,8 @@ import java.util.Scanner;
 import attack.users.*;
 import attack.bots.*;
 import characters.*;
+import state.*;
+import observer.*;
 import characters.bots.DifficultBotFactory;
 import characters.bots.NormalBotFactory;
 import settings.*;
@@ -124,7 +126,7 @@ public class GameController {
 
             System.out.println("Escoge el tipo de personaje:");
             System.out.print("Guerrero/Mago/Arquero\n---> ");
-            String tipo = entrada.nextLine().toLowerCase();
+            String tipo = entrada.nextLine().trim().toLowerCase();
 
             Personaje nuevoPersonaje;
 
@@ -145,6 +147,7 @@ public class GameController {
             }
             
             //Añadido al array de personajes
+
             arrayPersonajes.add(nuevoPersonaje);
         }
     }
@@ -162,21 +165,27 @@ public class GameController {
                 switch (personajeRandom) {
                     //Los métodos de la factory ya implementan un personaje base para ser decorado en funicon de la clase
                     case 1:
-                        nuevoPersonajeBot = new GuerreroDecorator(normalBotFactory.crearGuerrero(), 30);
+                    nuevoPersonajeBot = new GuerreroDecorator(normalBotFactory.crearGuerrero(), 30);
+                    break;
                     case 2:
-                        nuevoPersonajeBot = new MagoDecorator(normalBotFactory.crearMago(), 100, 3);
+                    nuevoPersonajeBot = new MagoDecorator(normalBotFactory.crearMago(), 100, 3);
+                    break;
                     case 3:
-                        nuevoPersonajeBot = new ArqueroDecorator(normalBotFactory.crearArquero(), 5, 3);
+                    nuevoPersonajeBot = new ArqueroDecorator(normalBotFactory.crearArquero(), 5, 3);
+                    break;
                 }
 
             }else /*DIFÍCIL*/{
                 switch (personajeRandom) {
                     case 1:
-                        nuevoPersonajeBot = new GuerreroDecorator(difficultBotFactory.crearGuerrero(), 30);
+                    nuevoPersonajeBot = new GuerreroDecorator(difficultBotFactory.crearGuerrero(), 30);
+                    break;
                     case 2:
-                        nuevoPersonajeBot = new MagoDecorator(difficultBotFactory.crearMago(), 100, 5);
+                    nuevoPersonajeBot = new MagoDecorator(difficultBotFactory.crearMago(), 100, 5);
+                    break;
                     case 3:
-                        nuevoPersonajeBot = new ArqueroDecorator(difficultBotFactory.crearArquero(), 7, 5);
+                    nuevoPersonajeBot = new ArqueroDecorator(difficultBotFactory.crearArquero(), 7, 5);
+                    break;
                 }
 
             }
@@ -194,8 +203,7 @@ public class GameController {
     public void simulacion()
     {
         System.out.println("\n-------\n");
-        Integer jTurnoAtacante = randomTurno();
-        Integer jTurnoAtacado;
+        
 
         //Estrategias user
         GuerreroUserAtaqueStrategy guerreroUserAtaqueStrategy = new GuerreroUserAtaqueStrategy();
@@ -208,6 +216,11 @@ public class GameController {
         GuerreroBotAtaqueStrategy guerreroBotAtaqueStrategy = new GuerreroBotAtaqueStrategy();
 
         do{
+            /*
+             * Avisar
+             */
+            Integer jTurnoAtacante = randomTurno();
+            Integer jTurnoAtacado;
             System.out.println(this.arrayPersonajes.get(jTurnoAtacante));
             
             /** SELECCION DEL TURNO
@@ -250,6 +263,8 @@ public class GameController {
              * Si está a 0, cambiar el estado y eliminar al personaje del ArrayList
              * Implementar Observer para poder implementar el State
             */
+
+
 
             //Pausa entre turnos
             try {
