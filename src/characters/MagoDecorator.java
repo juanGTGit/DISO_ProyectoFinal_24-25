@@ -51,7 +51,7 @@ public class MagoDecorator extends PersonajeDecorator{
 
     @Override
     public void recibeDanyo(Integer valor){
-        this.setVida(valor);
+        this.setVida(-valor);
     }
 
 }

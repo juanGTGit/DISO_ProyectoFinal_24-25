@@ -120,8 +120,6 @@ public class GameController {
 
         for(int i = 0; i < totalJugadores; i++){
 
-            entrada.nextLine(); //Limpieza de buffer
-
             System.out.println("Escoge el tipo de personaje:");
             System.out.print("Guerrero/Mago/Arquero\n---> ");
             String tipo = entrada.nextLine().toLowerCase();
@@ -257,6 +255,8 @@ public class GameController {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+
+
 
         }while(this.arrayPersonajes.size() != 1);
 
