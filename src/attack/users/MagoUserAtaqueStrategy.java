@@ -18,7 +18,8 @@ public class MagoUserAtaqueStrategy implements AtaqueStrategy{
 
         do{
             System.out.println("Que deberia hacer el mago?");
-            System.out.println("1- Atacar\n2- Consumible\n--> " );
+            System.out.println("1- Atacar\n2- Consumible");
+            System.out.print("---> ");
             accion = entrada.nextInt();
 
             //Acciones del personaje en función de la opción escogida

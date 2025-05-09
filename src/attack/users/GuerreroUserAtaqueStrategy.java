@@ -3,6 +3,7 @@ package attack.users;
 import java.util.Scanner;
 
 import attack.AtaqueStrategy;
+import characters.GuerreroDecorator;
 import characters.Personaje;
 
 public class GuerreroUserAtaqueStrategy implements AtaqueStrategy{
@@ -17,7 +18,8 @@ public class GuerreroUserAtaqueStrategy implements AtaqueStrategy{
 
         do{
             System.out.println("Que deberia hacer el guerrero?");
-            System.out.println("1- Atacar\n---> ");
+            System.out.println("1- Atacar");
+            System.out.print("---> ");
             accion = entrada.nextInt();
             
             //Realización del ataque
@@ -25,7 +27,16 @@ public class GuerreroUserAtaqueStrategy implements AtaqueStrategy{
                 case 1:
                     System.out.println("El jugador " + atacante.getNombre() + " ataca a " + atacado.getNombre());
 
-                    atacado.recibeDanyo(atacante.getFuerza());
+                    if(atacado instanceof GuerreroDecorator){
+                        if(((GuerreroDecorator)atacado).getArmadura() > 0){
+                            atacado.recibeDanyo(atacante.getFuerza());
+                        }else{
+                            ((GuerreroDecorator)atacado).recibeDanyoVida(atacante.getFuerza());
+                        }
+                    }else{
+                        atacado.recibeDanyo(atacante.getFuerza());
+                    }
+                    
                     break;
             }
             

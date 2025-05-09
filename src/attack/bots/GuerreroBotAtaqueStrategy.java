@@ -1,6 +1,7 @@
 package attack.bots;
 
 import attack.AtaqueStrategy;
+import characters.GuerreroDecorator;
 import characters.Personaje;
 
 public class GuerreroBotAtaqueStrategy implements AtaqueStrategy{
@@ -22,7 +23,15 @@ public class GuerreroBotAtaqueStrategy implements AtaqueStrategy{
         //Realización del ataque
         System.out.println("El jugador " + atacante.getNombre() + " ataca a " + atacado.getNombre());
 
-        atacado.recibeDanyo(atacante.getFuerza());
+        if(atacado instanceof GuerreroDecorator){
+            if(((GuerreroDecorator)atacado).getArmadura() > 0){
+                atacado.recibeDanyo(atacante.getFuerza());
+            }else{
+                ((GuerreroDecorator)atacado).recibeDanyoVida(atacante.getFuerza());
+            }
+        }else{
+            atacado.recibeDanyo(atacante.getFuerza());
+        }
 
     }
 

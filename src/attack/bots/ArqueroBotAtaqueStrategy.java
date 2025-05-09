@@ -38,20 +38,20 @@ public class ArqueroBotAtaqueStrategy implements AtaqueStrategy{
 
                 tipoAtaque = (int)(Math.random() * 2 + 1);
 
-                switch(tipoAtaque){
-                    case 1:
-                        System.out.println("El jugador " + atacante.getNombre() + " ataca a " + atacado.getNombre() + " con arco");
-                        atacado.recibeDanyo(atacante.getFuerza());
+                if(tipoAtaque == 1){
+                    System.out.println("El jugador " + atacante.getNombre() + " ataca a " + atacado.getNombre() + " con arco");
+                    atacado.recibeDanyo(atacante.getFuerza());
 
-                        if(atacante instanceof ArqueroDecorator){
-                            ((ArqueroDecorator)atacante).dispararFlecha();
-                        }
-                    case 2:
-                        System.out.println("El jugador " + atacante.getNombre() + " ataca a " + atacado.getNombre() + " con daga");
-                        atacado.recibeDanyo(atacante.getFuerza());
-                    default:
-                        System.out.println("Opcion no valida");
+                    if(atacante instanceof ArqueroDecorator){
+                        ((ArqueroDecorator)atacante).dispararFlecha();
+                    }
+                }else if(tipoAtaque == 2){
+                    System.out.println("El jugador " + atacante.getNombre() + " ataca a " + atacado.getNombre() + " con daga");
+                    atacado.recibeDanyo(atacante.getFuerza());
+                }else{
+                    System.out.println("Opcion no valida");
                 }
+
             case 2:
                 if(atacado instanceof ArqueroDecorator){
                     ((ArqueroDecorator) atacante).curarVenda();

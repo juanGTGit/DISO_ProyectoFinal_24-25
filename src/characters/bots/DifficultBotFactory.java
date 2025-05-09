@@ -18,15 +18,15 @@ public class DifficultBotFactory implements PersonajeBotFactory{
 
     public Personaje crearGuerrero()
     {
-        return new PersonajeBase("M" + contador++, 90, 10, TipoJugador.BOT);
+        return new PersonajeBase("M" + contador++, 100, 10, TipoJugador.BOT);
     }
 
     public Personaje crearMago() {
-        return new PersonajeBase("M" + contador++, 100, 30, TipoJugador.BOT);
+        return new PersonajeBase("M" + contador++, 80, 30, TipoJugador.BOT);
     }
 
     public Personaje crearArquero() {
-        return new PersonajeBase("M" + contador++, 80, 20, TipoJugador.BOT);
+        return new PersonajeBase("M" + contador++, 90, 20, TipoJugador.BOT);
     }
 
 }

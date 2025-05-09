@@ -26,7 +26,8 @@ public class ArqueroUserAtaqueStrategy implements AtaqueStrategy{
                 case 1:
                     do{
                         System.out.println("Como deberia atacar el arquero?");
-                        System.out.println("1- Arco\n2- Daga\n--> " );
+                        System.out.println("1- Arco\n2- Daga");
+                        System.out.print("---> ");
                         tipoAtaque = entrada.nextInt();
 
                         switch(tipoAtaque){

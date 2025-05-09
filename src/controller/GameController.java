@@ -119,21 +119,21 @@ public class GameController {
         for(int i = 0; i < totalJugadores; i++){
 
             System.out.println("Escoge el tipo de personaje:");
-            System.out.print("Guerrero/Mago/Arquero\n---> ");
-            String tipo = entrada.nextLine().toLowerCase();
+            System.out.print("1. Guerrero\n2. Mago\n3. Arquero\n---> ");
+            Integer tipo = entrada.nextInt();
 
             Personaje nuevoPersonaje;
 
             //Decoradores en funcion de la clase
             switch (tipo) {
-                case "guerrero":
-                    nuevoPersonaje = new GuerreroDecorator(new PersonajeBase("J" + (i+1), 100, 20, TipoJugador.USER), 30);
+                case 1:
+                    nuevoPersonaje = new GuerreroDecorator(new PersonajeBase("J" + (i+1), 80, 10, TipoJugador.USER), 30);
                     break;
-                case "mago":
-                    nuevoPersonaje = new MagoDecorator(new PersonajeBase("J" + (i+1), 80, 15, TipoJugador.USER), 100, 3);
+                case 2:
+                    nuevoPersonaje = new MagoDecorator(new PersonajeBase("J" + (i+1), 60, 30, TipoJugador.USER), 100, 3);
                     break;
-                case "arquero":
-                    nuevoPersonaje = new ArqueroDecorator(new PersonajeBase("J" + (i+1), 90, 25, TipoJugador.USER), 5, 3);
+                case 3:
+                    nuevoPersonaje = new ArqueroDecorator(new PersonajeBase("J" + (i+1), 70, 20, TipoJugador.USER), 5, 3);
                     break;
                 default:
                     System.out.println("Tipo de personaje no válido. Se creará un Guerrero por defecto.");
@@ -141,7 +141,6 @@ public class GameController {
             }
             
             //Añadido al array de personajes
-
             arrayPersonajes.add(nuevoPersonaje);
         }
     }
@@ -294,19 +293,12 @@ public class GameController {
 
         }while(this.arrayPersonajes.size() != 1);
 
-
-
         if(this.arrayPersonajes.size() == 1){
             System.out.println("\n---------\n");
             System.out.println("El ganador es: " + this.arrayPersonajes.get(0).getNombre());
             System.out.println("\n---------\n" + this.arrayPersonajes.get(0));
         }
     }
-
-    /** TODO Cambiar la condición de guardado de partida
-     * Si no se ha jugado ninguna partida que no se pueda guardar nada
-     * y haga un print de un aviso (no excepcion)
-    */
 
     //Método de guardado
     public void guardarPartida(){

@@ -18,15 +18,15 @@ public class NormalBotFactory implements PersonajeBotFactory{
 
     public Personaje crearGuerrero()
     {
-        return new PersonajeBase("M" + contador++, 70, 10, TipoJugador.BOT);
+        return new PersonajeBase("M" + contador++, 80, 10, TipoJugador.BOT);
     }
 
     public Personaje crearMago() {
-        return new PersonajeBase("M" + contador++, 80, 30, TipoJugador.BOT);
+        return new PersonajeBase("M" + contador++, 60, 30, TipoJugador.BOT);
     }
 
     public Personaje crearArquero() {
-        return new PersonajeBase("M" + contador++, 60, 20, TipoJugador.BOT);
+        return new PersonajeBase("M" + contador++, 70, 20, TipoJugador.BOT);
     }
 
 }
