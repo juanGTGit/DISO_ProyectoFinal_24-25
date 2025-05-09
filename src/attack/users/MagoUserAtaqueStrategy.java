@@ -3,6 +3,7 @@ package attack.users;
 import java.util.Scanner;
 
 import attack.AtaqueStrategy;
+import characters.GuerreroDecorator;
 import characters.MagoDecorator;
 import characters.Personaje;
 
@@ -26,8 +27,7 @@ public class MagoUserAtaqueStrategy implements AtaqueStrategy{
             switch(accion){
                 case 1:
                     System.out.println("El jugador " + atacante.getNombre() + " ataca a " + atacado.getNombre());
-
-                    atacado.recibeDanyo(atacante.getFuerza());
+                    atacarGuerrero(atacante, atacado);
 
                     if(atacante instanceof MagoDecorator){
                         ((MagoDecorator) atacante).gastarMana();
@@ -43,6 +43,18 @@ public class MagoUserAtaqueStrategy implements AtaqueStrategy{
             }
         }while(accion != 1 || accion != 2);
         
+    }
+
+    public void atacarGuerrero(Personaje atacante, Personaje atacado){
+        if(atacado instanceof GuerreroDecorator){
+            if(((GuerreroDecorator)atacado).getArmadura() > 0){
+                atacado.recibeDanyo(atacante.getFuerza());
+            }else{
+                ((GuerreroDecorator)atacado).recibeDanyoVida(atacante.getFuerza());
+            }
+        }else{
+            atacado.recibeDanyo(atacante.getFuerza());
+        }
     }
 
 }

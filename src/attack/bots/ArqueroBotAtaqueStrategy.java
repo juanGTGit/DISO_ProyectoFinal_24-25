@@ -2,6 +2,7 @@ package attack.bots;
 
 import attack.AtaqueStrategy;
 import characters.ArqueroDecorator;
+import characters.GuerreroDecorator;
 import characters.Personaje;
 
 public class ArqueroBotAtaqueStrategy implements AtaqueStrategy{
@@ -40,7 +41,7 @@ public class ArqueroBotAtaqueStrategy implements AtaqueStrategy{
 
                 if(tipoAtaque == 1){
                     System.out.println("El jugador " + atacante.getNombre() + " ataca a " + atacado.getNombre() + " con arco");
-                    atacado.recibeDanyo(atacante.getFuerza());
+                    atacarGuerrero(atacante, atacado);
 
                     if(atacante instanceof ArqueroDecorator){
                         ((ArqueroDecorator)atacante).dispararFlecha();
@@ -59,9 +60,17 @@ public class ArqueroBotAtaqueStrategy implements AtaqueStrategy{
             default:
                 System.out.println("Opcion no valida");    
         }
+    }
 
-
-
-
+    public void atacarGuerrero(Personaje atacante, Personaje atacado){
+        if(atacado instanceof GuerreroDecorator){
+            if(((GuerreroDecorator)atacado).getArmadura() > 0){
+                atacado.recibeDanyo(atacante.getFuerza());
+            }else{
+                ((GuerreroDecorator)atacado).recibeDanyoVida(atacante.getFuerza());
+            }
+        }else{
+            atacado.recibeDanyo(atacante.getFuerza());
+        }
     }
 }

@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import attack.AtaqueStrategy;
 import characters.ArqueroDecorator;
+import characters.GuerreroDecorator;
 import characters.Personaje;
 
 public class ArqueroUserAtaqueStrategy implements AtaqueStrategy{
@@ -33,7 +34,7 @@ public class ArqueroUserAtaqueStrategy implements AtaqueStrategy{
                         switch(tipoAtaque){
                             case 1:
                                 System.out.println("El jugador " + atacante.getNombre() + " ataca a " + atacado.getNombre() + " con arco");
-                                atacado.recibeDanyo(atacante.getFuerza());
+                                atacarGuerrero(atacante, atacado);
 
                                 if(atacante instanceof ArqueroDecorator){
                                     ((ArqueroDecorator)atacante).dispararFlecha();
@@ -61,6 +62,18 @@ public class ArqueroUserAtaqueStrategy implements AtaqueStrategy{
 
         }while(accion != 1 || accion != 2);
         
+    }
+
+    public void atacarGuerrero(Personaje atacante, Personaje atacado){
+        if(atacado instanceof GuerreroDecorator){
+            if(((GuerreroDecorator)atacado).getArmadura() > 0){
+                atacado.recibeDanyo(atacante.getFuerza());
+            }else{
+                ((GuerreroDecorator)atacado).recibeDanyoVida(atacante.getFuerza());
+            }
+        }else{
+            atacado.recibeDanyo(atacante.getFuerza());
+        }
     }
 
 }
