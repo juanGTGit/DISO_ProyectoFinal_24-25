@@ -14,7 +14,7 @@ public class DifficultBotFactory implements PersonajeBotFactory{
      * sin exponer la lógica de instanciación)
     */
     
-    private static int contador = 0;
+    private static Integer contador = 0;
 
     public Personaje crearGuerrero()
     {

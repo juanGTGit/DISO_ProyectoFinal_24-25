@@ -25,9 +25,9 @@ public class GameController {
     //Metodo inicial llamado en el main
     public void configurarJuego(){
 
-        int totalJugadores = 0, totalJugadoresMaquina = 0, nivelDificultad = 0;
+        Integer totalJugadores = 0, totalJugadoresMaquina = 0, nivelDificultad = 0;
 
-        int opcion = 0;
+        Integer opcion = 0;
         System.out.println("\n---BIENVENIDO AL JUEGO---\n");
         System.out.println("Elija una opcion de las siguientes:\n");
 
@@ -97,7 +97,7 @@ public class GameController {
     }
 
     //Comienzo del juego
-    public void iniciarJuego(int totalJugadores, int totalJugadoresMaquina, int nivelDificultad){
+    public void iniciarJuego(Integer totalJugadores, Integer totalJugadoresMaquina, Integer nivelDificultad){
 
         //Llamadas a métodos de la partida
         creacionPersonajesUser(totalJugadores);
@@ -112,7 +112,7 @@ public class GameController {
     }
 
     //Creacion de usuarios
-    private void creacionPersonajesUser(int totalJugadores){
+    private void creacionPersonajesUser(Integer totalJugadores){
 
         System.out.println("\nBienvenido a la seleccion de personajes!!!");
 
@@ -146,7 +146,7 @@ public class GameController {
     }
 
     //Creacion de bots
-    private void creacionPersonajesBots(int totalJugadoresMaquina, int nivelDificultad){
+    private void creacionPersonajesBots(Integer totalJugadoresMaquina, Integer nivelDificultad){
         Personaje nuevoPersonajeBot = null;
 
         for(int i = 0; i < totalJugadoresMaquina; i++){
@@ -188,7 +188,7 @@ public class GameController {
     }
     
     //Método para decidir el turno
-    private int randomTurno() {
+    private Integer randomTurno() {
 		return  (int)(Math.random() * this.arrayPersonajes.size() + 0);
 	}
 
@@ -224,9 +224,9 @@ public class GameController {
 
             do{
                 jTurnoAtacado = randomTurno();
-            }while(jTurnoAtacado == jTurnoAtacante);
+            }while(jTurnoAtacado.equals(jTurnoAtacante));
 
-            if(this.arrayPersonajes.get(jTurnoAtacante).getTipoJugador() == TipoJugador.USER){
+            if(this.arrayPersonajes.get(jTurnoAtacante).getTipoJugador().equals(TipoJugador.USER)){
 
                 if(this.arrayPersonajes.get(jTurnoAtacante) instanceof GuerreroDecorator){
                     guerreroUserAtaqueStrategy.atacar(this.arrayPersonajes.get(jTurnoAtacante), this.arrayPersonajes.get(jTurnoAtacado));
@@ -236,7 +236,7 @@ public class GameController {
                     arqueroUserAtaqueStrategy.atacar(this.arrayPersonajes.get(jTurnoAtacante), this.arrayPersonajes.get(jTurnoAtacado));
                 }
 
-            }else if(this.arrayPersonajes.get(jTurnoAtacante).getTipoJugador() == TipoJugador.BOT){
+            }else if(this.arrayPersonajes.get(jTurnoAtacante).getTipoJugador().equals(TipoJugador.USER)){
 
                 if(this.arrayPersonajes.get(jTurnoAtacante) instanceof GuerreroDecorator){
                     guerreroBotAtaqueStrategy.atacar(this.arrayPersonajes.get(jTurnoAtacante), this.arrayPersonajes.get(jTurnoAtacado));

@@ -8,7 +8,7 @@ import settings.TipoJugador;
 
 public class PersonajeBase extends Personaje{
 
-    public PersonajeBase(String nombre, int vida, int fuerza, TipoJugador tipoJugador) {
+    public PersonajeBase(String nombre, Integer vida, Integer fuerza, TipoJugador tipoJugador) {
         super(nombre, vida, fuerza, tipoJugador);
     }
 

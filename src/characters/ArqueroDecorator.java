@@ -17,14 +17,14 @@ public class ArqueroDecorator extends PersonajeDecorator{
         this.daga = 10;
     }
 
-    public int getFlechas() {
+    public Integer getFlechas() {
 		return this.flechas;
 	}
-	public int getVendas() {
+	public Integer getVendas() {
 		return this.vendas;
 	}
 	
-	public int getDaga() {
+	public Integer getDaga() {
 		return this.daga;
 	}
 
