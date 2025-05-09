@@ -9,6 +9,6 @@ Proyecto Final de la asigantura de Diseño de Software de Ingeniería de Softwar
   · Decorator
   · Strategy
 
-- Memoria con manual de instrucciones, descripción del juego y diagrama UML disponibles pronto.
+- Memoria con manual de instrucciones, descripción del juego y diagrama UML disponibles en la carpeta docs.
 
 Creado por Juan Battaglio Quintana y Juan Guasp Timoner.
